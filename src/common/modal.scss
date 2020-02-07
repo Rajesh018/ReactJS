@@ -1,0 +1,11 @@
+.modal{
+  .modal__close{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+  }
+  .modal-content{
+    border: none;
+  }
+}

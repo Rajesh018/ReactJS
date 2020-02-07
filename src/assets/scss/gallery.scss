@@ -1,0 +1,126 @@
+@import "../../assets/scss/common/device";
+.gallery{
+  &__content{
+    height: calc(100vh - 110px);
+
+    @media all and (min-width: $xs) and (max-width: $sm - 1){
+      min-height: auto;
+      height: auto;
+    }
+    @media all and (max-width: $xs - 1){
+      min-height: auto;
+      height: auto;
+    }
+  }
+  &__grid{
+    min-height: calc(100vh - 110px);
+    @media all and (min-width: $xs) and (max-width: $sm - 1){
+      min-height: 640px;
+    }
+    @media all and (max-width: $xs - 1){
+      min-height: 580px;
+      &.gallery__show{
+        min-height: 480px;
+      }
+    }
+  }
+  &__list{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    .track-vertical {
+      background: #cf7f06;
+      .thumb-vertical {
+        background: #a06204;
+      }
+    }
+    &__wrapper{
+      background: #f90;
+    }
+    &__outer{
+
+    }
+    .image__item{
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 260px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      img{
+
+      }
+    }
+  }
+  &__show{
+    background: #ffff01;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-content: center;
+    align-content: center;
+  }
+  &__selection{
+    padding: 20px;
+    justify-self: center;
+    align-self: center;
+    .image__show{
+      text-align: center;
+      .image__author{
+        .title{
+          margin-bottom: 30px;
+        }
+      }
+      .image__container{
+        max-width: 320px;
+        margin-bottom: 30px;
+      }
+    }
+  }
+  &__add{
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    -webkit-justify-content: center;
+    justify-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+    min-height: 50px;
+    vertical-align: middle;
+    padding-top: 10px;
+    p{
+      margin-bottom: 0;
+      vertical-align: middle;
+    }
+    button{
+      vertical-align: middle;
+    }
+  }
+  &__header{
+
+  }
+  &__footer{
+
+  }
+  &__margin{
+    &__info{
+      position: relative;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      text-align: center;
+      min-height: 55px;
+      .h-title{
+        font-size: 21px;
+        margin-bottom: 0;
+      }
+    }
+  }
+  &__content{
+
+  }
+}
+
+
+
+
+
