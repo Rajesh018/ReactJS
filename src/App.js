@@ -2,6 +2,9 @@ import React from 'react';
 
 import Gallery from "./pages/gallery"
 
+import {ToastContainer} from "react-toastify"
+import "react-toastify/scss/main.scss"
+
 import './App.scss';
 
 
@@ -28,6 +31,7 @@ function App() {
           // @todo Add these section if required
         }
       </footer>
+      <ToastContainer/>
     </div>
   );
 }
