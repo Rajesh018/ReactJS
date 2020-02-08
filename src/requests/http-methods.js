@@ -1,5 +1,5 @@
 import axios from "./axios";
-import {appendLanguageToURL, getResponseStatus, getSlug} from "./helper";
+import {getResponseStatus, getSlug} from "./helper";
 
 
 /**
@@ -166,79 +166,3 @@ export const patchRequest = (url, data) => {
   });
 };
 
-export const setTokenInHeader = (config) => {
-
-  let token, user;
-  // token = sessionStorage.getItem("JWT_TOKEN");
-  // user = sessionStorage.getItem("user");
-  token = localStorage.getItem("JWT_TOKEN");
-  user = localStorage.getItem("user");
-  if(user){
-    user = JSON.parse(user);
-  }
-  let headers = {};
-  if (token) {
-    // Authorization: `Bearer ${token}` for token based auth
-    headers = {
-      Authorization: `Basic ${token}`,
-    };
-    if(user && (user._id || user.userid)){
-      if(!user._id){
-        user["_id"] = user.userid;
-      }
-      headers["X_CURRENT_USER_ID"] = user._id;
-      if(config.hasOwnProperty("admin")){
-        headers["X_USER_TYPE"] = "admin";
-      }
-      // Updated to add user type, which will use in backend api
-      if(user && user.roles && Array.isArray(user.roles)){
-        const userRoles = user.roles;
-        if(userRoles.indexOf("admin") > -1){
-          headers["X_USER_TYPE"] = "admin";
-        }
-        if(userRoles.indexOf("super_admin") > -1){
-          headers["X_USER_TYPE"] = "super_admin";
-        }
-      }
-    }
-    if(Object.keys(headers).length){
-      config["headers"] = headers;
-    }
-    return config;
-  }
-};
-
-export const getTokenRequest = (url, params={}, config_params) => {
-  let config = {};
-  if(params && Object.keys(params).length){
-    config["params"] = params;
-  }
-
-  config = {...config, ...config_params};
-  config = setTokenInHeader(config);
-
-  if(config_params && Object.keys(config_params).length){
-    config["headers"] = {...config_params.headers, ...config.headers};
-    config = {...config_params, ...config};
-  }
-  url = appendLanguageToURL(url);
-  return getRequest(url, config);
-};
-
-export const postTokenRequest = (url, data, config={}) => {
-  config = setTokenInHeader(config);
-  url = appendLanguageToURL(url);
-  return postRequest(url, data, config)
-};
-
-export const putTokenRequest = (url, data, config={}) => {
-  config = setTokenInHeader(config);
-  url = appendLanguageToURL(url);
-  return putRequest(url, data, config)
-};
-
-export const deleteTokenRequest = (url, data, config={}) => {
-  config = setTokenInHeader(config);
-  url = appendLanguageToURL(url);
-  return deleteRequest(url, config);
-}
